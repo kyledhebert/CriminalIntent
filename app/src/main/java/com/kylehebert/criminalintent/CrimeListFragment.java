@@ -82,12 +82,6 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            /*
-            I'm going to send the position of the tapped crime as part of the intent,
-            start the activity for result, and get the position back so I only have to reload
-            that item and not the entire RecylcerView.
-             */
-            int selectedCrime = getLayoutPosition();
             Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getID());
             startActivity(intent);
 
