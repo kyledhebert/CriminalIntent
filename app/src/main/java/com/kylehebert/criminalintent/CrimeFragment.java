@@ -18,6 +18,7 @@ import java.util.UUID;
 
 /**
  * Created by kylehebert on 9/20/15.
+ * Fragment used to display the details of an individual Crime.
  */
 public class CrimeFragment extends Fragment {
 
@@ -38,9 +39,6 @@ public class CrimeFragment extends Fragment {
 
     }
 
-    public void returnResult(){
-        getActivity().setResult(CrimeActivity.RESULT_OK, null);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
