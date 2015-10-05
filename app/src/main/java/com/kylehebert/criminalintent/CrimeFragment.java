@@ -2,6 +2,7 @@ package com.kylehebert.criminalintent;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class CrimeFragment extends Fragment {
     private CheckBox mSolvedCheckBox;
 
     private static final String  ARG_CRIME_ID = "crime_id";
+    private static final String DIALOG_DATE = "DialogDate";
+
 
     public static CrimeFragment newInstance(UUID crimeId){
         Bundle args = new Bundle();
@@ -73,8 +76,16 @@ public class CrimeFragment extends Fragment {
 
         mDateButton = (Button) view.findViewById(R.id.crime_date);
         //use DateFormat to display the day of week and date in a common format instead of timestamp
-        mDateButton.setText(DateFormat.format("EEEE, MMM d, yyyy",mCrime.getDate()));
-        mDateButton.setEnabled(false);
+        mDateButton.setText(DateFormat.format("EEEE, MMM d, yyyy", mCrime.getDate()));
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                DatePickerFragment dateDialog = DatePickerFragment.newInstance(mCrime.getDate());
+                dateDialog.show(fragmentManager,DIALOG_DATE);
+            }
+        });
+
 
         mSolvedCheckBox = (CheckBox) view.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setChecked(mCrime.isSolved());
