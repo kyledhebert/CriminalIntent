@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/crime_recycler_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/crime_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <!-- This only shows if the To-Do list is empty-->
+    <LinearLayout
+        android:id="@+id/empty_list_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_list_message"
+            android:padding="16dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
 

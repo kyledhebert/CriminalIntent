@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.net.Inet4Address;
@@ -26,6 +27,8 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
 
+    private LinearLayout mEmptyListLayout;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,9 @@ public class CrimeListFragment extends Fragment {
 
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.crime_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //this only gets displays if the list of crimes is empty
+        mEmptyListLayout = (LinearLayout) view.findViewById(R.id.empty_list_layout);
 
         updateUI();
 
@@ -81,6 +87,11 @@ public class CrimeListFragment extends Fragment {
         }else {
 
             mAdapter.notifyDataSetChanged();
+        }
+
+        //if the list of crimes is empty, hide the recycler view
+        if (crimes.size() == 0) {
+            mCrimeRecyclerView.setVisibility(View.GONE);
         }
     }
 
