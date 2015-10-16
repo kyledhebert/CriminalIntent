@@ -1,6 +1,12 @@
 package com.kylehebert.criminalintent;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.kylehebert.CrimeDbHelper;
+import com.kylehebert.CrimeDbSchema;
+import com.kylehebert.CrimeDbSchema.CrimeTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +20,10 @@ public class CrimeLab {
     private static CrimeLab sCrimeLab;
 
     public void addCrime(Crime crime) {
-        mCrimes.add(crime);
     }
 
-    private List<Crime> mCrimes;
+    private Context mContext;
+    private SQLiteDatabase mDatabase;
 
     public static CrimeLab get (Context context) {
         if (sCrimeLab == null) {
@@ -26,21 +32,30 @@ public class CrimeLab {
         return sCrimeLab;
     }
 
-    private CrimeLab(Context context){
-        mCrimes = new ArrayList<>();
+    private CrimeLab(Context context) {
+        mContext = context.getApplicationContext();
+        mDatabase = new CrimeDbHelper(mContext).getWritableDatabase();
     }
 
     public List<Crime> getCrimes(){
-        return mCrimes;
+        return null;
     }
 
     public Crime getCrime(UUID id) {
-        for (Crime crime : mCrimes) {
-            if (crime.getID().equals(id)) {
-                return crime;
-            }
-        }
         return null;
+    }
+
+    /*
+    creates a ContentValue instance from a Crime instance
+     */
+    private static ContentValues getContentValues(Crime crime) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CrimeTable.Columns.UUID, crime.getID().toString());
+        contentValues.put(CrimeTable.Columns.TITLE, crime.getTitle());
+        contentValues.put(CrimeTable.Columns.DATE, crime.getDate().getTime());
+        contentValues.put(CrimeTable.Columns.SOLVED, crime.isSolved() ? 1:0);
+
+        return contentValues;
     }
 
 
