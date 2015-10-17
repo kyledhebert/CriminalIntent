@@ -85,7 +85,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter = new CrimeAdapter(crimes);
             mCrimeRecyclerView.setAdapter(mAdapter);
         }else {
-
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -155,6 +155,15 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        /*
+        since getCrimes only returns a snapshot of the Crimes from when they are
+        pulled from the database, updateUI needs setCrimes to refresh the fragment's
+        view of the CrimeLab
+         */
+        public void setCrimes(List<Crime> crimes) {
+            mCrimes = crimes;
         }
     }
 

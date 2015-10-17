@@ -14,10 +14,13 @@ public class Crime {
     private Date mDate;
     private boolean mSolved;
 
+    public Crime() {
+        this(UUID.randomUUID());
+    }
 
-    public Crime(){
+    public Crime(UUID id){
         //Generate a unique identified
-        mID = UUID.randomUUID();
+        mID = id;
         mDate = new Date();
 
     }

@@ -1,4 +1,4 @@
-package com.kylehebert;
+package com.kylehebert.criminalintent.database;
 
 /**
  * Created by kylehebert on 10/15/15. This class will define the database

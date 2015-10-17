@@ -1,12 +1,10 @@
-package com.kylehebert;
+package com.kylehebert.criminalintent.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
-import android.provider.ContactsContract;
 
-import com.kylehebert.CrimeDbSchema.CrimeTable;
+import com.kylehebert.criminalintent.database.CrimeDbSchema.CrimeTable;
 
 /**
  * Created by kylehebert on 10/15/15. This class will set up a new
